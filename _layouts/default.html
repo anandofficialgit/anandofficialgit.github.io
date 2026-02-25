@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <style>
+        /* Reset and Full Height */
+        html, body { margin: 0; padding: 0; height: 100%; overflow-x: hidden; }
+
+        /* The Main Layout Grid */
+        .site-container {
+            display: grid;
+            grid-template-areas: 
+                "header header header"
+                "left-blank main right-sidebar"
+                "footer footer footer";
+            grid-template-columns: 15% 70% 15%;
+            grid-template-rows: 10vh auto 5vh; /* 5% Header, Auto Content, 5% Footer */
+            min-height: 100vh;
+        }
+
+        /* 1. Header (5%) */
+        .site-header { 
+            grid-area: header; 
+            background: #2f8d46; /* GFG Green */
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 20px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* 2. Left Blank (15%) */
+        .left-blank { grid-area: left-blank; background: #f9f9f9; border-right: 1px solid #eee; }
+
+        /* 3. Main Content (70%) */
+        .main-content { 
+            grid-area: main; 
+            padding: 40px; 
+            line-height: 1.7; 
+            background: white;
+        }
+
+        /* 4. Right Sidebar (15%) */
+        .right-sidebar { 
+            grid-area: right-sidebar; 
+            padding: 20px; 
+            background: #ffffff; 
+            border-left: 1px solid #eee;
+            font-size: 0.85rem;
+        }
+
+        /* 5. Footer (5%) */
+        .site-footer { 
+            grid-area: footer; 
+            background: #333; 
+            color: #ccc; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 0.8rem;
+        }
+
+        /* Sidebar Styling */
+        .sidebar-title { font-size: 11px; text-transform: uppercase; color: #999; margin-bottom: 10px; }
+        .sidebar-nav { list-style: none; padding: 0; }
+        .sidebar-nav a { color: #2f8d46; text-decoration: none; font-weight: 600; display: block; margin-bottom: 8px; }
+
+        /* Code Blocks */
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; border: 1px solid #ddd; overflow-x: auto; }
+        
+        .home-btn {
+	    background-color: rgba(255, 255, 255, 0.2);
+	    color: white;
+	    text-decoration: none;
+	    padding: 5px 15px;
+	    border-radius: 4px;
+	    font-size: 14px;
+	    transition: background 0.3s;
+	}
+
+	.home-btn:hover {
+	    background-color: rgba(255, 255, 255, 0.4);
+	    color: #fff;
+	}
+
+	/* Ensure the title and buttons align perfectly */
+	.site-header {
+	    height: 5vh;
+	    display: flex;
+	    align-items: center;
+	    justify-content: space-between;
+	}
+
+        
+    </style>
+</head>
+<body>
+
+<div class="site-container">
+    <!-- Header Area 
+    <header class="site-header">
+        {{ site.title }} | Tutorial Portal
+    </header>-->
+    <header class="site-header">
+	<div style="display: flex; align-items: center; flex: 1;">
+		<!-- Home Button -->
+		<a href="/" class="home-btn">Home</a>
+		<span style="margin-left: 15px;">{{ site.title }}</span>
+	</div>
+
+	<!-- Search Bar -->
+	<div class="search-container">
+	<form action="https://www.google.com" method="get" target="_blank">
+	    <input type="hidden" name="q" value="site:{{ site.url | remove: 'http://' | remove: 'https://' }}">
+	    <input type="text" name="q" placeholder="Search..." class="search-input">
+	    <button type="submit" class="search-btn">🔍</button>
+	</form>
+	</div>
+      </header>
+	
+	
+    <!-- Left Empty Space -->
+    <aside class="left-blank"></aside>
+
+    <!-- Main Article Area -->
+    <main class="main-content">
+        <h1>{{ page.title }}</h1>
+        <hr>
+        {{ content }}
+    </main>
+
+    <!-- Right Sidebar (Minimap) -->
+    <aside class="right-sidebar">
+        <div class="sidebar-title">Categories</div>
+        <!--<nav class="sidebar-nav">
+            <a href="#">Languages</a>
+            <a href="#">OS</a>
+            <a href="#">System Designs</a>
+            <a href="#">Databases</a>
+            <a href="#">Data Science</a>
+        </nav>-->
+        <nav class="sidebar-nav">
+    	    <a href="/languages/">Languages</a>
+    	    <a href="/os/">OS</a>
+    	    <a href="/systemdesigns/">System Designs</a>
+    	    <a href="/databases/">Databases</a>
+    	    <a href="/datascience/">Data Science</a>
+	</nav>
+
+    </aside>
+
+    <!-- Footer Area -->
+    <footer class="site-footer">
+        © 2026 {{ site.title }} - All Rights Reserved.
+    </footer>
+</div>
+
+</body>
+</html>
+
